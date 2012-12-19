@@ -16,19 +16,7 @@ object Application extends Controller {
   def index = Action { implicit request =>
     //Redirect(routes.Application.tasks)
     request.headers;
-    val escapedUrl = request.queryString.getOrElse("url", List("")).head;
-    val url = URLDecoder.decode(escapedUrl, "utf-8");
-    Logger.info(url);
-    Async{
-      WS.url(url).get().map{ response =>
-        var body = response.body
-        body = body.replace("<body>","<body><div class='local-header'>local header</div>")
-        body = body.replace("</body>","<div class='local-footer'>local footer</div></body>")
-        Ok(body).withHeaders(
-            CONTENT_TYPE -> response.header("Content-type").head
-            );
-      }
-    }
+    Ok("OKwww");
   }
   
   def tasks = Action {

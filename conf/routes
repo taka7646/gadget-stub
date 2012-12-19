@@ -3,8 +3,7 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
-GET     /proxy                      controllers.Proxy.index
+GET     /                           controllers.Proxy.index
 
 #task
 GET     /tasks                      controllers.Application.tasks
