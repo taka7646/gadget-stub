@@ -5,6 +5,18 @@
 # Home page
 GET     /                           controllers.Proxy.index
 
+GET     /api/people/:guid/:selector          controllers.Api.people(guid:String, selector:String)
+GET     /api/people/:guid/:selector/:pid     controllers.Api.isFriend(guid:String, selector:String, pid:String)
+
+# GET     /api/textdata/:appId/:gid
+GET     /api/textdata/:appId/:gid/self              controllers.Api.getTextGroup(appId:String, gid:String)
+GET     /api/textdata/:appId/:gid/all               controllers.Api.getTextAll(appId:String, gid:String, selector:String)
+GET     /api/textdata/:appId/:gid/:selector/:ids    controllers.Api.getText(appId:String, gid:String, selector:String, ids:String)
+
+POST    /api/textdata/:appId/:gid                   controllers.Api.createTextGroup(appId:String, gid:String)
+DELETE  /api/textdata/:appId/:gid/:selector         controllers.Api.deleteTextGroup(appId:String, gid:String, selector:String)
+
+
 #task
 GET     /tasks                      controllers.Application.tasks
 POST    /tasks                      controllers.Application.newTask
