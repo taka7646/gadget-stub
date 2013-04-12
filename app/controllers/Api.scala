@@ -54,6 +54,14 @@ object Api extends Controller {
 		mb += "totalResults" -> toJson(total)
 		Ok(toJson(mb.result))
 	}
+
+	def deleteText(appId:String, gid:String, tid:String) = Action(parse.json){ implicit request =>
+		val mb = Map.newBuilder[String,JsValue]
+		mb += "startIndex" -> toJson(1)
+		mb += "itemPerPage" -> toJson(20)
+		mb += "totalResults" -> toJson(1)
+		Ok(toJson(mb.result))
+	}
 	
 	def getTextAll(appId:String, gid:String, selector:String) = Action{ implicit request =>
 		val mb = Map.newBuilder[String,JsValue]
@@ -62,6 +70,27 @@ object Api extends Controller {
 
 	def getText(appId:String, gid:String, selector:String, ids:String) = Action{ implicit request =>
 		val mb = Map.newBuilder[String,JsValue]
+		Ok(toJson(mb.result))
+	}
+	
+	def createText(appId:String, gid:String) = Action(parse.json){ implicit request =>
+		val mb = Map.newBuilder[String,JsValue]
+		(request.body \ "data").asOpt[String].map{ data =>
+			
+			// FIXME!! ここでテキストを保存して、IDを生成する。
+			val id = 1;
+			mb += "textData" -> toJson(Map(
+					"published" -> "",
+					"writerId" -> "",
+					"updated" -> "",
+					"id" -> id.toString,
+					"groupName" -> gid,
+					"data" -> data
+					))
+		}
+		mb += "startIndex" -> toJson(1)
+		mb += "itemPerPage" -> toJson(1)
+		mb += "totalResults" -> toJson(1)
 		Ok(toJson(mb.result))
 	}
 

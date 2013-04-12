@@ -14,7 +14,9 @@ GET     /api/textdata/:appId/:gid/all               controllers.Api.getTextAll(a
 GET     /api/textdata/:appId/:gid/:selector/:ids    controllers.Api.getText(appId:String, gid:String, selector:String, ids:String)
 
 POST    /api/textdata/:appId/:gid                   controllers.Api.createTextGroup(appId:String, gid:String)
-DELETE  /api/textdata/:appId/:gid/:selector         controllers.Api.deleteTextGroup(appId:String, gid:String, selector:String)
+DELETE  /api/textdata/:appId/:gid/@self             controllers.Api.deleteTextGroup(appId:String, gid:String)
+POST    /api/textdata/:appId/:gid/@all              controllers.Api.createText(appId:String, gid:String)
+DELETE  /api/textdata/:appId/:gid/@all/:tid         controllers.Api.deleteText(appId:String, gid:String, tid:String)
 
 
 #task
